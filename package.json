@@ -1,0 +1,22 @@
+{
+  "name": "OscClient",
+  "version": "0.0.1",
+  "description": "Wrapper for making requests to Open Spherical Camera APIs",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "OSC",
+    "Spherical",
+    "API",
+    "Open",
+    "Spherical",
+    "Camera",
+    "Node"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "q": "^1.4.1",
+    "request": "^2.65.0"
+  }
+}
