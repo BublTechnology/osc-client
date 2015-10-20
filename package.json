@@ -1,8 +1,12 @@
 {
-  "name": "OscClient",
+  "name": "osc-client",
   "version": "0.0.1",
   "description": "Wrapper for making requests to Open Spherical Camera APIs",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BublTechnology/osc-client.git"
+  },
   "scripts": {},
   "keywords": [
     "OSC",
