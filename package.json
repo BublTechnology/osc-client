@@ -1,13 +1,15 @@
 {
   "name": "osc-client",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Wrapper for making requests to Open Spherical Camera APIs",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:BublTechnology/osc-client.git"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "mocha tests"
+  },
   "keywords": [
     "OSC",
     "Spherical",
@@ -22,5 +24,9 @@
   "dependencies": {
     "q": "^1.4.1",
     "superagent": "^1.4.0"
+  },
+  "devDependencies": {
+    "assert": "^1.3.0",
+    "sinon": "^1.17.2"
   }
 }

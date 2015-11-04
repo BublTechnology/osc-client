@@ -1,5 +1,7 @@
 ## osc-client
 
+[![Build Status](https://travis-ci.org/BublTechnology/osc-client.svg)](https://travis-ci.org/BublTechnology/osc-client)
+
 Wrapper for making requests to [Open Spherical Camera API](https://developers.google.com/streetview/open-spherical-camera/?hl=en)
 
 
