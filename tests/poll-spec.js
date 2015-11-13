@@ -74,6 +74,35 @@ describe("poll", function () {
       }, 100);
     });
 
+    it("rejects promise if there is an error object on the response body", function(done) {
+      var rejectSpy = sinon.spy();
+      var resolveSpy = sinon.spy();
+      var fakePromiseOne = {
+        then: function (cb) {
+          cb({ body: { error: { message: 'bad error!' } } });
+        }
+      };
+      var fakePromise = {
+        then: function () {},
+        reject: function () {
+          rejectSpy();
+        },
+        resolve: function () {
+          resoleSpy();
+        }
+      };
+      var fakeClient = {
+        commandsStatus: sinon.stub().returns(fakePromiseOne)
+      };
+      poll.pollPeriod = 1;
+      poll.commandStatus(fakeClient, 12, fakePromise, Date.now(), null);
+      setTimeout(function () {
+        assert.equal(rejectSpy.called, true);
+        assert.equal(resolveSpy.called, false);
+        done();
+      });
+    });
+
     it("calls statusCallback if state is inProgress", function (done) {
       var spyOne = sinon.spy();
       var spyTwo = sinon.spy();
