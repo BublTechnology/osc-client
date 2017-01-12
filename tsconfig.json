@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "outDir": "lib",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "strictNullChecks": true,
+        "declaration": true
+    },
+    "include": [
+        "src/**/*",
+        "typings/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "**/*-spec.ts"
+    ]
+}

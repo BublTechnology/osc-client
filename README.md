@@ -14,25 +14,19 @@ npm install osc-client --save
 
 ```javascript
 
-var OscClientClass = require('osc-client').OscClient;
+const OscClientClass = require('osc-client').OscClient
 
-var domain = '127.0.0.1';
-var port = '8000';
-var client = new OscClientClass(domain, port);
-var sessionId;
+let domain = '127.0.0.1'
+let port = '8000'
+let client = new OscClientClass(domain, port)
+let sessionId
 
-client.startSession().then(function(res){
-  sessionId = res.body.results.sessionId;
-  return client.takePicture(sessionId);
-})
-.then(function (res) {
-  var pictureUri = res.body.results.fileUri;
-  return client.getImage(pictureUri);
-})
-.then(function(res){
-  var imgData = res.body; //<Buffer ff d8 ff ...>
-  return client.closeSession(sessionId);
-});
-
+client.startSession().then((res) => client.takePicture(res.results.sessionId))
+  .then((res) => client.poll(res.id))
+  .then((res) => client.getImage(res.results.fileUri))
+  .then((imageData) => {
+    require('fs').writeFileSync('image.jpg', imageData) //<Buffer ff d8 ff ...>
+    return client.closeSession(sessionId)
+  }).then(() => console.log('COMPLETED'))
 
 ```
