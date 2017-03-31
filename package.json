@@ -1,6 +1,6 @@
 {
   "name": "osc-client",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Wrapper for making requests to Open Spherical Camera APIs",
   "main": "index.js",
   "repository": {
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "mocha tests",
     "lint": "$(npm bin)/eslint ./tests ./lib",
-    "lint-fix": "$(npm bin)/eslint ./test ./lib --fix"
+    "lint-fix": "$(npm bin)/eslint ./tests ./lib --fix"
   },
   "keywords": [
     "OSC",
