@@ -10,7 +10,7 @@
   "scripts": {
     "test": "mocha tests",
     "lint": "$(npm bin)/eslint ./tests ./lib",
-    "lint-fix": "$(npm bin)/eslint ./test ./lib --fix"
+    "lint-fix": "$(npm bin)/eslint ./tests ./lib --fix"
   },
   "keywords": [
     "OSC",
