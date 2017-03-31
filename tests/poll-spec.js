@@ -1,6 +1,9 @@
+/* global describe, it */
+
 var poll = require('../lib/poll');
 var assert = require('assert');
 var sinon = require('sinon');
+var Q = require('q');
 
 describe("poll", function () {
   describe("defaults", function () {
@@ -22,7 +25,7 @@ describe("poll", function () {
 
       poll.pollPeriod = 1;
       poll.commandStatus(fakeClient, 12, promise, Date.now(), null);
-      setTimeout(function(){
+      setTimeout(function () {
         assert.equal(fakeClient.commandsStatus.called, true);
         done();
       }, 100);
@@ -40,7 +43,7 @@ describe("poll", function () {
 
       poll.pollPeriod = 1;
       poll.commandStatus(fakeClient, 15, promise, Date.now(), null);
-      setTimeout(function(){
+      setTimeout(function () {
         assert(fakeClient.commandsStatus.calledWith(15));
         done();
       }, 100);
@@ -61,34 +64,30 @@ describe("poll", function () {
         then: function () {},
         reject: function () {},
         resolve: function () {
-            spyOne();
-          }
+          spyOne();
+        }
       };
 
       poll.pollPeriod = 1;
       poll.commandStatus(fakeClient, 15, fakePromiseTwo, Date.now(), spyTwo);
-      setTimeout(function(){
+      setTimeout(function () {
         assert.equal(spyOne.called, true);
         assert.equal(spyTwo.called, false);
         done();
       }, 100);
     });
 
-    it("rejects promise if there is an error object on the response body", function(done) {
+    it("rejects promise if there is an error object on the response body", function (done) {
       var rejectSpy = sinon.spy();
       var resolveSpy = sinon.spy();
-      var fakePromiseOne = {
-        then: function (cb) {
-          cb({ body: { error: { message: 'bad error!' } } });
-        }
-      };
+      var fakePromiseOne = Q.reject({ error: { message: 'bad error!' } });
       var fakePromise = {
         then: function () {},
         reject: function () {
           rejectSpy();
         },
         resolve: function () {
-          resoleSpy();
+          resolveSpy();
         }
       };
       var fakeClient = {
@@ -100,17 +99,13 @@ describe("poll", function () {
         assert.equal(rejectSpy.called, true);
         assert.equal(resolveSpy.called, false);
         done();
-      });
+      }, 100);
     });
 
     it("calls statusCallback if state is inProgress", function (done) {
       var spyOne = sinon.spy();
       var spyTwo = sinon.spy();
-      var fakePromiseOne = {
-        then: function (cb) {
-          cb({ body: { state: 'inProgress' } });
-        }
-      };
+      var fakePromiseOne = Q({ state: 'inProgress' })
       var fakeClient = {
         commandsStatus: sinon.stub().returns(fakePromiseOne)
       };
@@ -124,7 +119,7 @@ describe("poll", function () {
 
       poll.pollPeriod = 10;
       poll.commandStatus(fakeClient, 15, fakePromiseTwo, Date.now(), spyTwo);
-      setTimeout(function(){
+      setTimeout(function () {
         assert.equal(spyOne.called, false);
         assert.equal(spyTwo.called, true);
         done();

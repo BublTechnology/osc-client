@@ -9,8 +9,10 @@
 
 var OscClient = require('./lib/OscClient');
 var BublOscClient = require('./lib/BublOscClient')
+var Osc2Client = require('./lib/Osc2Client')
 
 module.exports = {
   OscClient: OscClient,
-  BublOscClient: BublOscClient
+  BublOscClient: BublOscClient,
+  Osc2Client: Osc2Client
 };

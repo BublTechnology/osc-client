@@ -8,7 +8,9 @@
     "url": "git@github.com:BublTechnology/osc-client.git"
   },
   "scripts": {
-    "test": "mocha tests"
+    "test": "mocha tests",
+    "lint": "$(npm bin)/eslint ./tests ./lib",
+    "lint-fix": "$(npm bin)/eslint ./test ./lib --fix"
   },
   "keywords": [
     "OSC",
@@ -26,6 +28,9 @@
     "superagent": "^1.4.0"
   },
   "devDependencies": {
+    "@bubltechnology/eslint-config-bubl": "github:bubltechnology/eslint-config-bubl",
+    "eslint": "^3.16.1",
+    "mocha": "^3.0.0",
     "assert": "^1.3.0",
     "sinon": "^1.17.2"
   }

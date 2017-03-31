@@ -1,3 +1,5 @@
+/* global describe, it */
+
 var commandsExecute = require('../lib/commandsExecute');
 var assert = require('assert');
 

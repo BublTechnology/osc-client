@@ -1,3 +1,5 @@
+/* global describe, it, beforeEach */
+
 var BublOscClient = require("../lib/BublOscClient");
 var OscClient = require("../lib/OscClient");
 var assert = require('assert');
@@ -13,8 +15,8 @@ describe("BublOscClient", function () {
     });
 
     it("should extend OscClient", function () {
-      for(var clientProp in client) {
-        if(typeof client[clientProp] === 'function') {
+      for (var clientProp in client) {
+        if (typeof client[clientProp] === 'function') {
           assert.equal(typeof bublClient[clientProp], 'function');
         }
       }
